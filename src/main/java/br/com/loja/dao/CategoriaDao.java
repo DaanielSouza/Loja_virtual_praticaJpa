@@ -13,8 +13,6 @@ public class CategoriaDao {
     }
 
     public void cadastrar(CategoriaEntity categoriaEntity){
-        this.em.getTransaction().begin();
         this.em.persist(categoriaEntity);
-        this.em.getTransaction().commit();
     }
 }
