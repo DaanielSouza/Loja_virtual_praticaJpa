@@ -24,12 +24,13 @@ public class PedidosEntity {
     private Long id;
 
     private LocalDate data = LocalDate.now();
+    @Column(name = "valor_total")
     private BigDecimal valorTotal;
 
     @ManyToOne
     private ClientesEntity cliente;
 
-    @OneToMany(mappedBy = "produto")
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
     private List<ItemPedidoEntity> itens = new ArrayList<>();
 
     public PedidosEntity(ClientesEntity cliente) {

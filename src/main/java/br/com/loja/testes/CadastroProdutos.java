@@ -5,6 +5,7 @@ import br.com.loja.dao.ProdutoDao;
 import br.com.loja.entity.CategoriaEntity;
 import br.com.loja.entity.ProdutoEntity;
 import br.com.loja.util.JPAUtil;
+import br.com.loja.util.MockUtil;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
@@ -13,7 +14,7 @@ import java.util.List;
 public class CadastroProdutos {
 
     public static void main(String[] args) {
-        cadastrarProduto();
+        MockUtil.popularBanco();
         Long id = 2L;
 
         EntityManager em = JPAUtil.getEntityManager();
@@ -26,21 +27,5 @@ public class CadastroProdutos {
         todos.forEach(e -> System.out.println(e.getNome()));
 
         System.out.println(dao.buscarPrecoPorNomeDaCategoria("CELULARES"));
-    }
-
-    public static void cadastrarProduto(){
-        CategoriaEntity categoria = new CategoriaEntity("CELULARES");
-        ProdutoEntity celular = new ProdutoEntity("Redmi 8 pro","Potente",BigDecimal.valueOf(1200.50), categoria);
-
-        EntityManager em = JPAUtil.getEntityManager();
-        CategoriaDao catDao = new CategoriaDao(em);
-        ProdutoDao dao = new ProdutoDao(em);
-
-        em.getTransaction().begin();
-        catDao.cadastrar(categoria);
-        dao.cadastrar(celular);
-        em.getTransaction().commit();
-
-        em.close();
     }
 }

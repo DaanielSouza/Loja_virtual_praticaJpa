@@ -19,6 +19,7 @@ public class ItemPedidoEntity {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "preco_unitario")
     private BigDecimal precoUnitario;
     private Integer quantidade;
 
